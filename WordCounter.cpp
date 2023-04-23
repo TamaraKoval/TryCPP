@@ -1,8 +1,9 @@
 #include "WordCounter.h"
 
-WordCounter::WordCounter(TomaString str, int num) {
+WordCounter::WordCounter(TomaString str, int num, WordCounter *next) {
     word = str;
     count = num;
+    this->next = next;
 }
 
 void WordCounter::increaseCounter(int num) {
@@ -11,29 +12,7 @@ void WordCounter::increaseCounter(int num) {
     }
 }
 
-void WordCounter::setWord(const TomaString &word) {
-    this->word = word;
-}
-
-void WordCounter::setCount(int count) {
-    this->count = count;
-}
-
-WordCounter WordCounter::operator=(WordCounter counter) {
-    word = counter.getWord();
-    count = counter.getCount();
-    return *this;
-}
-
-const TomaString &WordCounter::getWord() const {
-    return word;
-}
-
-int WordCounter::getCount() const {
-    return count;
-}
-
 std::ostream &operator<<(std::ostream &stream, const WordCounter &counter) {
-        stream << "Slovo " << counter.word << " vstrechaetsya " << counter.count << " raz.";
+        stream << counter.word << ": " << counter.count;
     return stream;
 }

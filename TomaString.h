@@ -17,6 +17,7 @@ public:
     char &operator[](unsigned index);
     TomaString operator=(char *str);
     TomaString operator=(TomaString str);
+    bool operator==(const TomaString &rhs) const;
     friend std::ostream &operator<<(std::ostream &stream, const TomaString &str);
 };
 

@@ -42,9 +42,16 @@ TomaString TomaString::operator=(TomaString str) {
     return *this;
 }
 
+bool TomaString::operator==(const TomaString &rhs) const {
+    return tomaString == rhs.tomaString &&
+           curMarkPos == rhs.curMarkPos;
+}
+
 std::ostream &operator<<(std::ostream &stream, const TomaString &str) {
     for (int i = 0; i < str.curMarkPos; i++) {
         stream << str.tomaString[i];
     }
     return stream;
 }
+
+

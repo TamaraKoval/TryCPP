@@ -9,19 +9,23 @@ void printIntro();
 
 int main() {
 
+    WordCounter c1("Ола", 5);
+    c1.increaseCounter(5);
+    cout << c1;
 
+/*
 
     WCList list;
-    list.push_back(str1count);
-    list.push_back(str2count);
+    TomaString str = "Кукусик";
+    list.addCounter(str, 6);
+    str = "Лапушка";
+    list.addCounter(str, 8);
+    str = "Кукусик";
+    list.addCounter(str, 3);
     cout << list.getLength() << endl;
     cout << list << endl;
 
-
-
-
-
-
+*/
 
     /*printIntro();
     int choice;

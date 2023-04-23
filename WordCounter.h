@@ -4,20 +4,13 @@
 #include "TomaString.h"
 
 class WordCounter {
+public:
     TomaString word;
     int count;
-public:
-    WordCounter() {}
-    WordCounter(TomaString str, int num);
+    WordCounter *next;
+    WordCounter(TomaString str, int num, WordCounter *next = nullptr);
     void increaseCounter(int i);
 
-    const TomaString &getWord() const;
-
-    int getCount() const;
-
-    void setWord(const TomaString &word);
-    void setCount(int count);
-    WordCounter operator=(WordCounter counter);
     friend std::ostream &operator<<(std::ostream &stream, const WordCounter &counter);
 };
 
