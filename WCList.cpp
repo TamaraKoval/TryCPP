@@ -24,10 +24,6 @@ WCList::~WCList() {
     }
 }
 
-int WCList::getLength() const {
-    return length;
-}
-
 void WCList::addCounter(TomaString str, int num) {
     WordCounter *p = head;
     while (p != nullptr) {

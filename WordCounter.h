@@ -10,7 +10,6 @@ public:
     WordCounter *next;
     WordCounter(TomaString str, int num, WordCounter *next = nullptr);
     void increaseCounter(int i);
-
     friend std::ostream &operator<<(std::ostream &stream, const WordCounter &counter);
 };
 

@@ -10,11 +10,9 @@ class WCList {
 public:
     WCList() { head = nullptr; length = 0;}
     ~WCList();
-    int getLength() const;
     void deleteFirst();
-    void addCounter(TomaString word, int num);
+    void addCounter(TomaString word, int num = 1);
     friend std::ostream &operator<<(std::ostream &stream, const WCList &list);
-
 };
 
 

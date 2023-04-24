@@ -7,22 +7,55 @@ TomaString::TomaString(const char *str) {
     }
     tomaString[i] = MARK;
     curMarkPos = i;
-
 }
 
 int TomaString::length() {
     return curMarkPos;
 }
 
-char & TomaString::operator[](unsigned index) {
-    if (index < curMarkPos) {
+void TomaString::append(char ch) {
+    curMarkPos++;
+    tomaString[curMarkPos - 1] = ch;
+
+}
+
+TomaString TomaString::toLowerCase() {
+    for (int i = 0; i < curMarkPos; i++) {
+        tomaString[i] |= 32;
+
+    }
+    return *this;
+}
+
+bool TomaString::isOdd() {
+    return (curMarkPos % 2 == 1);
+}
+
+bool TomaString::middleVowel() {
+    char vowels[] = "aeiouy";
+    for (int i = 1; i < (curMarkPos - 1); i++) {
+        for (char v : vowels) {
+            if (tomaString[i] == v) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+char TomaString::get(int index) {
+    if (index < curMarkPos && index >= 0) {
         return tomaString[index];
     } else {
         throw std::out_of_range("there is no char for given index. Bye!");
     }
 }
 
-TomaString TomaString::operator=(char *str) {
+char & TomaString::operator[](unsigned index) {
+    return tomaString[index];
+}
+
+TomaString & TomaString::operator=(const char *str) {
     int i;
     for (i = 0; str[i] && i < N - 2; i++) {
         tomaString[i] = str[i];
@@ -32,7 +65,7 @@ TomaString TomaString::operator=(char *str) {
     return *this;
 }
 
-TomaString TomaString::operator=(TomaString str) {
+TomaString & TomaString::operator=(TomaString str) {
     int i;
     for (i = 0; i < str.length(); i++) {
         tomaString[i] = str[i];
@@ -42,9 +75,39 @@ TomaString TomaString::operator=(TomaString str) {
     return *this;
 }
 
-bool TomaString::operator==(const TomaString &rhs) const {
-    return tomaString == rhs.tomaString &&
-           curMarkPos == rhs.curMarkPos;
+bool TomaString::operator==(TomaString str) {
+    for (int i = 0; i < curMarkPos; i++) {
+        if (tomaString[i] != str[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool TomaString::operator>(TomaString str) {
+    int testLength = this->length() < str.length() ? this->length() : str.length();
+    for (int i = 0; i < testLength; i++) {
+        if (tomaString[i] > str[i]) {
+            return true;
+        } else if (tomaString[i] < str[i]) {
+            return false;
+        }
+    }
+    return false;
+}
+
+bool TomaString::operator>=(TomaString str) {
+    if (this->curMarkPos == str.curMarkPos) {
+        for (int i = 0; i < curMarkPos; i++) {
+            if (tomaString[i] > str[i]) {
+                return true;
+            } else if (tomaString[i] < str[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+    return false;
 }
 
 std::ostream &operator<<(std::ostream &stream, const TomaString &str) {
@@ -53,5 +116,20 @@ std::ostream &operator<<(std::ostream &stream, const TomaString &str) {
     }
     return stream;
 }
+
+/*
+TomaString TomaString::toLowerCase() {
+    TomaString test = "АБВГДЕЁЖЗИЁКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    TomaString result = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяabcdefghijklmnopqrstuvwxyz";
+    for (int i = 0; i < curMarkPos; i++) {
+        for (int j = 0; j < test.length(); j++) {
+            if (tomaString[i] == test[j]) {
+                tomaString[i] = result[j];
+            }
+        }
+    }
+    return *this;
+}
+ */
 
 
